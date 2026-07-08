@@ -30,7 +30,8 @@ class PostureAnalyzer:
         try:
             # You need to download these files and place them in the models directory
             proto_file = "models/pose_deploy.prototxt"
-            weights_file = "models/pose_iter_440000.caffemodel"
+            # weights_file = "models/pose_iter_440000.caffemodel"
+            weights_file = "models/pose_iter_5840000.caffemodel"
             
             if not os.path.exists(proto_file) or not os.path.exists(weights_file):
                 print("Warning: Model files not found. Using simplified posture detection.")

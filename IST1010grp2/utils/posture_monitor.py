@@ -9,7 +9,9 @@ import os
 from posture_analyzer import PostureAnalyzer
 
 class PostureMonitor:
-    def __init__(self, alert_sound_path="sounds/alert.wav"):
+    def __init__(self, alert_sound_path="sounds/alert.mp3"):
+        try: pygame.mixer.music.load(self.alert_sound_path)
+        except Exception as e: pass
         """
         Initialize the Posture Monitor System
         
