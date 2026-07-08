@@ -28,10 +28,10 @@ class PostureAnalyzer:
     def load_model(self):
         """Load OpenPose model for pose detection"""
         try:
-            # You need to download these files and place them in the models directory
-            proto_file = "models/pose_deploy.prototxt"
+            # download these files and place them in the models directory
+            proto_file = "../models/pose_deploy.prototxt"
             # weights_file = "models/pose_iter_440000.caffemodel"
-            weights_file = "models/pose_iter_5840000.caffemodel"
+            weights_file = "../models/pose_iter_5840000.caffemodel"
             
             if not os.path.exists(proto_file) or not os.path.exists(weights_file):
                 print("Warning: Model files not found. Using simplified posture detection.")
@@ -54,8 +54,7 @@ class PostureAnalyzer:
         inHeight = 368
         inWidth = int((inHeight / height) * width)
         
-        inpBlob = cv2.dnn.blobFromImage(frame, 1.0 / 255, (inWidth, inHeight),
-                                        (0, 0, 0), swapRB=False, crop=False)
+        inpBlob = cv2.dnn.blobFromImage(frame, 1.0 / 255, (inWidth, inHeight), (0, 0, 0), swapRB=False, crop=False)
         
         self.net.setInput(inpBlob)
         output = self.net.forward()

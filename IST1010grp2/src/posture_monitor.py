@@ -8,6 +8,7 @@ from datetime import datetime
 import os
 from posture_analyzer import PostureAnalyzer
 
+
 class PostureMonitor:
     def __init__(self, alert_sound_path="../sounds/alert.mp3"):
         try: pygame.mixer.music.load(self.alert_sound_path)
@@ -104,12 +105,9 @@ class PostureMonitor:
         cv2.rectangle(frame, (width - 300, 10), (width - 10, 120), (255, 255, 255), 2)
         
         good_percentage = (self.good_posture_frames / max(1, self.total_frames)) * 100
-        cv2.putText(frame, f"Good Posture: {good_percentage:.1f}%", 
-                   (width - 290, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-        cv2.putText(frame, f"Bad Posture: {100 - good_percentage:.1f}%", 
-                   (width - 290, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
-        cv2.putText(frame, f"Frames: {self.total_frames}", 
-                   (width - 290, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        cv2.putText(frame, f"Good Posture: {good_percentage:.1f}%", (width - 290, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        cv2.putText(frame, f"Bad Posture: {100 - good_percentage:.1f}%", (width - 290, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+        cv2.putText(frame, f"Frames: {self.total_frames}", (width - 290, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
         
         return frame
     
@@ -165,8 +163,7 @@ class PostureMonitor:
     def stop(self):
         """Stop the monitoring system"""
         self.is_running = False
-        if self.cap:
-            self.cap.release()
+        if self.cap: self.cap.release()
         cv2.destroyAllWindows()
         print("Posture Monitoring Stopped")
     
@@ -183,15 +180,10 @@ def main():
     """Main function to run the posture monitor"""
     monitor = PostureMonitor()
     
-    if not monitor.start_monitoring():
-        return
+    if not monitor.start_monitoring(): return
     
-    try:
-        monitor.run()
-    except KeyboardInterrupt:
-        print("\nInterrupted by user")
-    finally:
-        monitor.stop()
+    try: monitor.run()
+    except KeyboardInterrupt: print("\nInterrupted by user")
+    finally: monitor.stop()
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
