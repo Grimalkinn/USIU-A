@@ -5,8 +5,8 @@ import platform
 import subprocess
 
 # run app with platform specific arguments
-# cmd = ["bin/python3", "src/posture_monitor.py", "os"]
-cmd = ["bin/python3", "src/test_monitor.py", "os"] # test and debug
+cmd = ["bin/python3", "src/Monitor.py", "os"]
+# cmd = ["bin/python3", "src/test_monitor.py", "os"] # test and debug
 opSys = platform.system()
 
 # activate virtual environment for specific platforms
@@ -18,6 +18,7 @@ opSys = platform.system()
 
 # run
 cmd[2] = str(opSys)
+subprocess.run(["bin/python3", "src/Downloader.py"])
 subprocess.run(cmd)
 
 # # deactivate environment, not specific

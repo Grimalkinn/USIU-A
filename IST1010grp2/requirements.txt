@@ -1,0 +1,5 @@
+numpy
+mediapipe==0.10.21
+pygame
+opencv-python
+requests
