@@ -5,7 +5,7 @@ import platform
 import subprocess
 
 # run app with platform specific arguments
-cmd = ["bin/python3", "utils/posture_monitor.py", "os"]
+cmd = ["bin/python3", "src/posture_monitor.py", "os"]
 opSys = platform.system()
 
 # activate virtual environment for specific platforms
